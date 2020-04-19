@@ -1,0 +1,88 @@
+---
+title: "Actividad Individual 7"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning=FALSE)
+library(tidyverse)
+library(here)
+```
+
+Esta actividad tiene que quedar disponible en su repositorio de GitHub con el resto de las actividades y tareas del curso. Asegurate que tanto Lucía como yo seamos colaboradoras de tu proyecto Tareas_STAT_NT.
+Recordar seleccionar en en opciones de proyecto, codificación de código UTF-8.
+
+Para esta tarea deberás usar los datos de propinas disponibles en EVA.
+
+```{r}
+propina <- readr::read_csv(here('./ACT 7/propina.csv'))
+```
+
+
+# Ejercicio 1
+
+
+1. Hacer un gráfico de dispersión: componentes estéticos `x` total, `y` propina, `color` fuma
+
+
+2. Cambiá el nombre de los ejes: `x` = "Total gastado en dólares", `y` = "Propina en dólares"
+
+3. Cambiá el nombre de la leyenda de `color` a "Fumador"
+
+4. Cambiá la posición de la leyenda en la parte inferior del gráfico usando `theme`
+
+5. Cambiar la paleta de colores a Dark2 usando `scale_color_brewer()`
+
+
+```{r, fig.cap = 'Gráfico de dispersión de total vs propina', fig.align = 'center'}
+propina %>% ggplot(aes(x = total, y = propina, color = fuma)) + 
+      geom_point() +
+      labs(x = 'Total gastado en dólares',
+           y = 'Propina en dólares',
+           color = 'Fumador') +
+      theme(axis.title = element_text(face = 'bold'),
+            legend.position = 'bottom') +
+      scale_color_brewer(palette = 'Dark2')
+```
+
+\newpage
+
+# Ejercicio 2
+
+1. Incluir un suavizado lineal usando `geom_smooth()`.
+
+2. Cambiar el color de la linea a negro.
+
+```{r, fig.cap = 'Gráfico de dispersión de total vs propina y ajuste lineal', fig.align = 'center'}
+propina %>% ggplot(aes(x = total, y = propina, color = fuma)) + 
+      geom_point() +
+      labs(x = 'Total gastado en dólares',
+           y = 'Propina en dólares',
+           color = 'Fumador') +
+      theme(axis.title = element_text(face = 'bold'),
+            legend.position = 'bottom') +
+      scale_color_brewer(palette = 'Dark2') +
+      geom_smooth(method = 'lm', color = 'black')
+```
+ \newpage
+
+# Ejercicio 3
+
+1. Hacer un gráfico de barras para la variable dia usando `geom_bar()`
+
+2. Colorear por día de la semana las barras usar el elemento estético `fill`
+
+3. Ordena los días según frecuencia (usá `fct_infreq()` de la librería `forcats`).
+
+4. Rotá el gráfico usando `coord_flip()`.
+
+```{r, fig.cap = 'Gráfico de barras de la variable Día. Como podemos observar el sábado es el día con mayor cantidad de viajes.'}
+propina %>% ggplot(aes(x = fct_infreq(dia), fill = dia)) + 
+      geom_bar() +
+      labs(x = 'Día de la semana', y = 'Conteo') +
+      theme(axis.title.x = element_text(face = 'bold'),
+            legend.position = 'none')
+```
+
+
