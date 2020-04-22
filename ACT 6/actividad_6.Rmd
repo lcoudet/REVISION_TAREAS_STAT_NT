@@ -5,9 +5,10 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 library(tidyverse)
 ```
+
 
 Esta actividad tiene que quedar disponible en su repositorio de GitHub con el resto de las actividades y tareas del curso. Asegurate que tanto lucía como yo seamos colaboradoras de tu proyecto Tareas_STAT_NT creado la semana pasada.
 Recordar seleccionar en en opciones de proyecto, codificación de código UTF-8.
