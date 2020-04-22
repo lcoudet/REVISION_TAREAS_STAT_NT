@@ -63,7 +63,7 @@ propina %>% ggplot(aes(x = total, y = propina, color = fuma)) +
       theme(axis.title = element_text(face = 'bold'),
             legend.position = 'bottom') +
       scale_color_brewer(palette = 'Dark2') +
-      geom_smooth(method = 'lm', color = 'black')
+      geom_smooth(method = 'lm')
 ```
  \newpage
 
